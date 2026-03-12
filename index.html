@@ -11,6 +11,20 @@
   </head>
   <body class="bg-white dark:bg-[#0a0a0a] text-[#0a0a0a] dark:text-white antialiased selection:bg-orange-500/30 transition-colors duration-300">
     
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 z-[100] bg-white dark:bg-[#0a0a0a] flex flex-col items-center justify-center transition-opacity duration-700">
+      <div class="relative">
+        <div class="w-24 h-24 border-4 border-orange-500/20 rounded-full animate-ping"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-16 h-16 bg-orange-500 rounded-2xl rotate-45 animate-pulse shadow-[0_0_40px_rgba(249,115,22,0.4)]"></div>
+        </div>
+      </div>
+      <div class="mt-12 text-center">
+        <h2 class="text-2xl font-bold orange-gradient-text tracking-widest animate-pulse">BEACON OF ISLAM</h2>
+        <p class="mt-2 text-gray-500 text-sm tracking-[0.3em] uppercase">Spreading the Light</p>
+      </div>
+    </div>
+
     <!-- Navbar -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 dark:bg-black/80 backdrop-blur-lg border-b border-black/5 dark:border-white/10 py-5">
       <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -20,6 +34,14 @@
 
         <!-- Desktop Nav -->
         <div class="hidden md:flex items-center gap-8">
+          <!-- Search Bar -->
+          <div class="hidden lg:flex items-center relative max-w-xs w-full">
+            <input type="text" id="search-input" placeholder="Search articles, videos..." class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full py-2 pl-10 pr-4 text-sm focus:border-orange-500 outline-none transition-all" />
+            <span class="absolute left-3 text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </span>
+          </div>
+
           <div class="flex items-center gap-6" id="desktop-links">
             <!-- Links injected by JS -->
           </div>
@@ -55,6 +77,15 @@
 
       <!-- Mobile Menu -->
       <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-black/95 backdrop-blur-xl border-b border-black/5 dark:border-white/10 md:hidden overflow-hidden transition-all duration-300">
+        <!-- Mobile Search -->
+        <div class="px-6 pt-6 md:hidden">
+          <div class="relative">
+            <input type="text" id="search-input-mobile" placeholder="Search..." class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full py-2 pl-10 pr-4 text-sm focus:border-orange-500 outline-none transition-all" />
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </span>
+          </div>
+        </div>
         <div class="flex flex-col p-6 gap-6" id="mobile-links">
           <!-- Links injected by JS -->
         </div>
@@ -62,7 +93,7 @@
     </nav>
 
     <!-- App Content -->
-    <main id="app-content" class="flex-grow min-h-screen">
+    <main id="app-content" class="flex-grow min-h-screen opacity-0 transition-opacity duration-500">
       <!-- Content injected by JS based on route -->
     </main>
 
@@ -93,8 +124,17 @@
           <div>
             <h4 class="text-white font-semibold mb-6">Contact Us</h4>
             <ul class="space-y-4 text-sm text-gray-400">
-              <li class="flex items-center gap-2">abdulmuizadeyemi15@gmail.com</li>
-              <li class="flex items-center gap-2">09034089737</li>
+              <li class="flex items-center gap-2">
+                <a href="mailto:abdulmuizadeyemi15@gmail.com" class="hover:text-orange-500 transition-colors">abdulmuizadeyemi15@gmail.com</a>
+              </li>
+              <li class="flex items-center gap-2">
+                <a href="tel:09034089737" class="hover:text-orange-500 transition-colors">09034089737</a>
+              </li>
+              <li class="flex items-center gap-2">
+                <a href="https://wa.me/2349034089737" target="_blank" class="text-green-500 hover:underline flex items-center gap-1">
+                  <span>WhatsApp Chat</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -103,6 +143,9 @@
         </div>
       </div>
     </footer>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed bottom-8 right-8 z-[100] flex flex-col gap-4 pointer-events-none"></div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>
